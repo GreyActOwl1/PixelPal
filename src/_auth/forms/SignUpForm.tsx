@@ -14,6 +14,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { signUpValidationSchema } from "@/lib/validation";
 import { Link } from "react-router-dom";
+import { FaInfoCircle } from "react-icons/fa";
+import { Tooltip } from "react-tooltip";
 
 const SignUpForms = () => {
   // 1. Define your form.
@@ -41,20 +43,22 @@ const SignUpForms = () => {
         <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12">
           Create a new account
         </h2>
-        {/*TODO: Change font colors */}
-        <p className="text-sm text-gray-500 mt-2">
-          Already have an account?{" "}
-          <Link to="/login" className="text-blue-500">
+        <p className="text-small-regular text-gray-500 text-center mt-2">
+          Already have an account?
+          <Link to="/login" className="text-primary-500 ml-1">
             Log in
           </Link>
         </p>
       </div>
-      <form onSubmit={form.handleSubmit(onSubmit)} className=" md:w-full flex-center flex-col space-y-4">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className=" md:w-full flex-center flex-col space-y-4"
+      >
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
-            <FormItem  className="sm:w-420 md:w-1/2">
+            <FormItem className="sm:w-420 md:w-1/2">
               <FormLabel>Name</FormLabel>
               <FormControl>
                 <Input placeholder="John Doe" autoComplete="name" {...field} />
@@ -68,10 +72,14 @@ const SignUpForms = () => {
           control={form.control}
           name="username"
           render={({ field }) => (
-            <FormItem  className="sm:w-420 md:w-1/2">
+            <FormItem className="sm:w-420 md:w-1/2">
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="user1" autoComplete="username" {...field} />
+                <Input
+                  placeholder="jdoe123"
+                  autoComplete="username"
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
                 This is your public display name.
@@ -84,10 +92,14 @@ const SignUpForms = () => {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem  className="sm:w-420 md:w-1/2">
+            <FormItem className="sm:w-420 md:w-1/2">
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="" autoComplete="email" {...field} />
+                <Input
+                  placeholder="jdoe@gmail.com"
+                  autoComplete="email"
+                  {...field}
+                />
               </FormControl>
               <FormDescription>This is your email address.</FormDescription>
               <FormMessage />
@@ -98,12 +110,20 @@ const SignUpForms = () => {
           control={form.control}
           name="password"
           render={({ field }) => (
-            <FormItem  className="sm:w-420 md:w-1/2">
-              <FormLabel>Password</FormLabel>
+            <FormItem className="sm:w-420 md:w-1/2">
+              <FormLabel>
+                Password
+                <FaInfoCircle
+                  className="text-gray-500 ml-1 inline-flex"
+                  data-tooltip-id="my-tooltip"
+                  data-tooltip-place="top"
+                />
+              </FormLabel>
+              
               <FormControl>
                 <Input
                   type="password"
-                  placeholder="********"
+                  placeholder="***************"
                   autoComplete="new-password"
                   {...field}
                 />
