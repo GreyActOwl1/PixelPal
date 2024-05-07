@@ -1,4 +1,4 @@
-import SignInForm from "./_auth/forms/SignInForm";
+import LoginForm from "./_auth/forms/LoginForm";
 import SignUpForm from "./_auth/forms/SignUpForm";
 import RootLayout from "./_root/RootLayout";
 import AuthLayout from "./_auth/AuthLayout";
@@ -11,7 +11,7 @@ const App = () => {
     <main className="flex h-screen">
       <Routes>
         <Route element={<AuthLayout />}>AuthLayout
-          <Route path="/sign-in" element={<SignInForm />} />
+          <Route path="/login" element={<LoginForm />} />
           <Route path="/sign-up" element={<SignUpForm />} />
         </Route>
         <Route element={<RootLayout />}>
