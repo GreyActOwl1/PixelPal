@@ -37,7 +37,7 @@ const SignUpForms = () => {
   return (
     <Form {...form}>
       <div className="sm:w-420 flex-center flex-col">
-        <img src="/public/assets/images/logo.svg" alt="PixelPal Logo"/>
+        <img src="/assets/images/logo.svg" alt="PixelPal Logo"/>
       </div>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
