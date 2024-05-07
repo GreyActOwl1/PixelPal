@@ -16,8 +16,11 @@ import { signUpValidationSchema } from "@/lib/validation";
 import { Link } from "react-router-dom";
 import { FaInfoCircle } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
+import LoadingSpinner from "@/components/shared/LoadingSpinner";
 
 const SignUpForms = () => {
+  const isSubmitting = false;
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof signUpValidationSchema>>({
     resolver: zodResolver(signUpValidationSchema),
@@ -49,6 +52,7 @@ const SignUpForms = () => {
             Log in
           </Link>
         </p>
+        {/* <p className="text-light-3 small-medium md:base-regular">To use Pixel Pal, please enter your details</p> */}
       </div>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
@@ -81,7 +85,7 @@ const SignUpForms = () => {
               <FormLabel>Username</FormLabel>
               <FormControl>
                 <Input
-                className="shad-input"
+                  className="shad-input"
                   placeholder="jdoe123"
                   autoComplete="username"
                   {...field}
@@ -102,7 +106,7 @@ const SignUpForms = () => {
               <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input
-                className="shad-input"
+                  className="shad-input"
                   placeholder="jdoe@gmail.com"
                   autoComplete="email"
                   {...field}
@@ -169,7 +173,10 @@ const SignUpForms = () => {
         />
 
         <Button type="submit" className="shad-button_primary">
-          Submit
+          {isSubmitting ? <div className="flex-center gap-2">
+            <LoadingSpinner/>
+            Creating Account...
+          </div> : "Sign Up"}
         </Button>
       </form>
     </Form>
