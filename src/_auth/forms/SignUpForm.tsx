@@ -115,11 +115,37 @@ const SignUpForms = () => {
                 Password
                 <FaInfoCircle
                   className="text-gray-500 ml-1 inline-flex"
-                  data-tooltip-id="my-tooltip"
+                  data-tooltip-id="pwd-tootip"
                   data-tooltip-place="top"
                 />
               </FormLabel>
-              
+              <Tooltip
+                id="pwd-tootip"
+                // events={["click", "hover"]}
+                openEvents={{ click: true, focus: true, mouseenter: true }}
+                closeEvents={{ mouseleave: false, blur: true }}
+                clickable={true}
+              >
+                <div>
+                  <h2 className="text-lg">Password Requirements</h2>
+                  <p>Your password must meet the following requirements:</p>
+                  <ul className="">
+                    <li>At least 8 characters long</li>
+                    <li>At least one number</li>
+                    <li>At least one special character</li>
+                  </ul>
+                  <br />
+                  <p>
+                    You can learn more about creating strong passwords
+                    <Link
+                      to="https://www.cisa.gov/secure-our-world/use-strong-passwords"
+                      className="text-blue-500 ml-1"
+                    >
+                      here
+                    </Link>
+                  </p>
+                </div>
+              </Tooltip>
               <FormControl>
                 <Input
                   type="password"
