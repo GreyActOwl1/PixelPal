@@ -61,7 +61,12 @@ const SignUpForms = () => {
             <FormItem className="sm:w-420 md:w-1/2">
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="John Doe" autoComplete="name" {...field} />
+                <Input
+                  className="shad-input"
+                  placeholder="John Doe"
+                  autoComplete="name"
+                  {...field}
+                />
               </FormControl>
               <FormDescription>This is your full name.</FormDescription>
               <FormMessage />
@@ -76,6 +81,7 @@ const SignUpForms = () => {
               <FormLabel>Username</FormLabel>
               <FormControl>
                 <Input
+                className="shad-input"
                   placeholder="jdoe123"
                   autoComplete="username"
                   {...field}
@@ -96,6 +102,7 @@ const SignUpForms = () => {
               <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input
+                className="shad-input"
                   placeholder="jdoe@gmail.com"
                   autoComplete="email"
                   {...field}
@@ -148,6 +155,7 @@ const SignUpForms = () => {
               </Tooltip>
               <FormControl>
                 <Input
+                  className="shad-input"
                   type="password"
                   placeholder="***************"
                   autoComplete="new-password"
