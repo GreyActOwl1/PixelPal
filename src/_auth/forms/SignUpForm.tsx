@@ -50,36 +50,70 @@ const SignUpForms = () => {
         </p>
       </div>
       <form onSubmit={form.handleSubmit(onSubmit)} className=" md:w-full flex-center flex-col space-y-4">
-        {["name", "username", "email", "password"].map((fieldName) => (
-          <FormField
-            key={fieldName}
-            control={form.control}
-            name={fieldName}
-            render={({ field }) => (
-              <FormItem className="sm:w-420 md:w-1/2">
-                <FormLabel>{fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder={fieldName === "name" ? "John Doe" : ""}
-                    autoComplete={fieldName}
-                    type={fieldName === "password" ? "password" : "text"}
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription>
-                  {fieldName === "name"
-                    ? "This is your full name."
-                    : fieldName === "username"
-                    ? "This is your public display name."
-                    : fieldName === "email"
-                    ? "This is your email address."
-                    : "This is your password."}
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        ))}
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem  className="sm:w-420 md:w-1/2">
+              <FormLabel>Name</FormLabel>
+              <FormControl>
+                <Input placeholder="John Doe" autoComplete="name" {...field} />
+              </FormControl>
+              <FormDescription>This is your full name.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem  className="sm:w-420 md:w-1/2">
+              <FormLabel>Username</FormLabel>
+              <FormControl>
+                <Input placeholder="user1" autoComplete="username" {...field} />
+              </FormControl>
+              <FormDescription>
+                This is your public display name.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem  className="sm:w-420 md:w-1/2">
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input placeholder="" autoComplete="email" {...field} />
+              </FormControl>
+              <FormDescription>This is your email address.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem  className="sm:w-420 md:w-1/2">
+              <FormLabel>Password</FormLabel>
+              <FormControl>
+                <Input
+                  type="password"
+                  placeholder="********"
+                  autoComplete="new-password"
+                  {...field}
+                />
+              </FormControl>
+              <FormDescription>This is your password.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         <Button type="submit" className="shad-button_primary">
           Submit
         </Button>
