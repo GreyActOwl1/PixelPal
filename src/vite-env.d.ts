@@ -1,0 +1,1 @@
+ ///<reference types="vite/client"/> // This is a reference to the Vite client types
