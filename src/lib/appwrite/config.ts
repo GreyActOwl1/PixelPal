@@ -1,5 +1,4 @@
 import { Client, Account, Databases, Storage, Avatars } from 'appwrite';
-import { DatabaseIcon } from 'lucide-react';
 
 //TODO: move .env.local to doppler
 export const appwriteConfig = {
