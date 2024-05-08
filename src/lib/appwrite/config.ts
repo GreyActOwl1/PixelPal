@@ -1,8 +1,9 @@
 import { Client, Account, Databases, Storage, Avatars } from 'appwrite';
+
 //TODO: move .env.local to doppler
 export const appwriteConfig = {
-    projectId: import.meta.env.APPWRITE_PROJECT_ID,
-    endpoint: import.meta.env.APPWRITE_ENDPOINT
+    projectId: import.meta.env.VITE_APPWRITE_PROJECT_ID,
+    endpoint: import.meta.env.VITE_APPWRITE_API_ENDPOINT
 };
 
 export const appwriteClient = new Client();

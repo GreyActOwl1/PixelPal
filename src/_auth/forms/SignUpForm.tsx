@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 import { FaInfoCircle } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
 import LoadingSpinner from "@/components/shared/LoadingSpinner";
+import { createUserAccount } from "@/lib/appwrite/api";
 
 const SignUpForms = () => {
   const isSubmitting = false;
@@ -33,9 +34,9 @@ const SignUpForms = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof signUpValidationSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+  async function onSubmit(values: z.infer<typeof signUpValidationSchema>) {
+    const newUser = await createUserAccount(values);
+    console.log(newUser);
     console.log(values);
   }
 
@@ -173,10 +174,14 @@ const SignUpForms = () => {
         />
 
         <Button type="submit" className="shad-button_primary">
-          {isSubmitting ? <div className="flex-center gap-2">
-            <LoadingSpinner/>
-            Creating Account...
-          </div> : "Sign Up"}
+          {isSubmitting ? (
+            <div className="flex-center gap-2">
+              <LoadingSpinner />
+              Creating Account...
+            </div>
+          ) : (
+            "Sign Up"
+          )}
         </Button>
       </form>
     </Form>
