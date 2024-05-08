@@ -18,8 +18,10 @@ import { FaInfoCircle } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
 import LoadingSpinner from "@/components/shared/LoadingSpinner";
 import { createUserAccount } from "@/lib/appwrite/api";
+import { useToast } from "@/components/ui/use-toast";
 
 const SignUpForms = () => {
+  const { toast } = useToast();
   const isSubmitting = false;
 
   // 1. Define your form.
@@ -35,9 +37,20 @@ const SignUpForms = () => {
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof signUpValidationSchema>) {
-    const newUser = await createUserAccount(values);
-    if(!newUser) return console.error("Account not created");
-    
+    const newUser = null
+    // const newUser = await createUserAccount(values);
+
+    if (!newUser) {
+      console.error("Account not created");
+      toast({
+        // TODO:allow trying again
+        title: "Uh oh! Something went wrong.",
+        description: "Sign up failed. Please try again.",
+      });
+    }
+
+    // const session = await LoginAccount()
+
     console.log(newUser);
     console.log(values);
   }
