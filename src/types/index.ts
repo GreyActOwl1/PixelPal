@@ -1,3 +1,15 @@
+import React from "react";
+
+export type InterfaceContextType ={
+  user: InterfaceUser;
+  isLoading: boolean;
+  setUser: React.Dispatch<React.SetStateAction<InterfaceUser>>;
+  isAuthenticated: boolean;
+  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
+  checkAuthUser: () => Promise<boolean>;
+ 
+
+};
 export type InterfaceNavLink = {
   imgURL: string;
   route: string;
