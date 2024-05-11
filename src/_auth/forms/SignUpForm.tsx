@@ -49,6 +49,7 @@ const SignUpForms = () => {
       });
     }
 
+    // TODO: Implement login after sign up
     // const session = await LoginAccount()
 
     console.log(newUser);
