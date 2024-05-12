@@ -57,3 +57,20 @@ export async function saveUserToDatabase(user: {
     return error;
   }
 }
+
+export async function signInAccount(user: {
+  email: string;
+  password: string;
+}) {
+  try {
+    const session = await appwriteAccount.createEmailPasswordSession(
+      user.email,
+      user.password
+    );
+
+    return session;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+}

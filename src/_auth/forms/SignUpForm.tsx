@@ -19,10 +19,14 @@ import { Tooltip } from "react-tooltip";
 import LoadingSpinner from "@/components/shared/LoadingSpinner";
 import { createUserAccount } from "@/lib/appwrite/api";
 import { useToast } from "@/components/ui/use-toast";
+import { useCreateUserAccountMutation, useSignInAccountMutation } from "@/lib/react-query/queriesAndMutations";
 
 const SignUpForms = () => {
   const { toast } = useToast();
-  const isSubmitting = false;
+  const isCreatingUser = false;
+  // const {mututeAsync: createUserAccount, isLoading: isCreatingUser} = useCreateUserAccountMutation();
+  // const {mututeAsync: signInAccount, isLoading: isSigningInUser} = useSignInAccountMutation();
+
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof signUpValidationSchema>>({
@@ -43,14 +47,24 @@ const SignUpForms = () => {
     if (!newUser) {
       console.error("Account not created");
       toast({
-        // TODO:allow trying again
+        // TODO:allow trying again?
         title: "Uh oh! Something went wrong.",
         description: "Sign up failed. Please try again.",
       });
     }
 
     // TODO: Implement login after sign up
-    // const session = await LoginAccount()
+     const session = await LoginAccount({
+        email: values.email,
+        password: values.password,
+      });
+
+      if (!session) {
+        return toast({
+          title: "Uh oh! Something went wrong.",
+          description: "Sign in failed. Please try again.",
+        });      }
+     
 
     console.log(newUser);
     console.log(values);
@@ -190,7 +204,8 @@ const SignUpForms = () => {
         />
 
         <Button type="submit" className="shad-button_primary">
-          {isSubmitting ? (
+        {isCreatingUser? (
+          // {isCreatingUser ? (
             <div className="flex-center gap-2">
               <LoadingSpinner />
               Creating Account...
