@@ -54,16 +54,16 @@ const SignUpForms = () => {
     }
 
     // TODO: Implement login after sign up
-     const session = await LoginAccount({
-        email: values.email,
-        password: values.password,
-      });
+    //  const session = await LoginAccount({
+    //     email: values.email,
+    //     password: values.password,
+    //   });
 
-      if (!session) {
-        return toast({
-          title: "Uh oh! Something went wrong.",
-          description: "Sign in failed. Please try again.",
-        });      }
+      // if (!session) {
+      //   return toast({
+      //     title: "Uh oh! Something went wrong.",
+      //     description: "Sign in failed. Please try again.",
+      //   });      }
      
 
     console.log(newUser);

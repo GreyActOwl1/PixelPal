@@ -5,7 +5,7 @@ import {
   appwriteConfig,
   appwriteDatabase,
 } from "./config";
-import { ID } from "appwrite";
+import { ID, Query } from "appwrite";
 
 export async function createUserAccount(user: InterfaceNewUser) {
   try {
@@ -66,9 +66,30 @@ export async function signInAccount(user: {
     const session = await appwriteAccount.createEmailPasswordSession(
       user.email,
       user.password
+
     );
 
     return session;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+}
+
+export async function getCurrentUser() {
+  try {
+    const currentAccount= await appwriteAccount.get();
+
+  if (!currentAccount) throw new Error("No user found");
+
+    const currentUser = await appwriteDatabase.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.usersCollectionId,
+    [Query.equal("$id", currentAccount.$id)]);
+    
+  if (!currentUser) throw new Error("No user data found");
+
+    return currentUser.documents[0];
   } catch (error) {
     console.error(error);
     return error;

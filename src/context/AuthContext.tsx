@@ -1,3 +1,4 @@
+import { getCurrentUser } from "@/lib/appwrite/api";
 import { InterfaceContextType, InterfaceUser } from "@/types";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { set } from "react-hook-form";
@@ -29,15 +30,30 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   const checkAuthUser = async () => {
-    // TODO: Replace this with your authentication logic.
-    setIsLoading(true);
-    // const user = await fetchUser();
-    // if (user) {
-    //   setUser(user);
-    //   setIsAuthenticated(true);
-    // }
-    setIsLoading(false);
-    return isAuthenticated;
+   try {
+    
+      const currentUser = await getCurrentUser();
+
+      if(currentUser){
+        setUser({
+          id: currentUser.$id,
+          name: currentUser.name,
+          username: currentUser.username,
+          email: currentUser.email,
+          imageUrl: currentUser.imageUrl,
+          bio: currentUser.bio,
+        });
+        setIsAuthenticated(true);
+        return true;
+      }
+    }
+    catch (error) {
+      console.error(error);
+      return false;
+    }
+    finally {
+      setIsLoading(false);
+    }
   };
   const value = {
     user,
